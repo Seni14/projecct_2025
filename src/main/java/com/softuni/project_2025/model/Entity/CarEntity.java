@@ -1,9 +1,8 @@
-package com.softuni.project_2025.Entity;
+package com.softuni.project_2025.model.Entity;
 
-import com.softuni.project_2025.Entity.Enums.EngineType;
+import com.softuni.project_2025.model.Enums.EngineType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Positive;
-import org.apache.catalina.User;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

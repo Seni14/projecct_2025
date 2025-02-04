@@ -1,9 +1,8 @@
-package com.softuni.project_2025.Entity;
+package com.softuni.project_2025.model.Entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "roles")

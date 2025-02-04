@@ -1,7 +1,6 @@
-package com.softuni.project_2025.Entity;
+package com.softuni.project_2025.model.Entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
