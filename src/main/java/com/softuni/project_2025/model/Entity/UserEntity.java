@@ -9,6 +9,8 @@ import java.util.List;
 @Table(name = "users")
 public class UserEntity extends BaseEntity{
 
+    private String username;
+
     private String firstName;
     private String lastName;
     @Column(unique = true,nullable = false)
@@ -79,6 +81,15 @@ public class UserEntity extends BaseEntity{
 
     public UserEntity setOwnedCars(List<CarEntity> ownedCars) {
         this.ownedCars = ownedCars;
+        return this;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public UserEntity setUsername(String username) {
+        this.username = username;
         return this;
     }
 }

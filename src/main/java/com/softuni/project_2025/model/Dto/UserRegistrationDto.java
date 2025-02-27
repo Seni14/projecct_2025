@@ -6,6 +6,9 @@ import jakarta.validation.constraints.Size;
 
 public class UserRegistrationDto {
     @NotEmpty
+    @Size(min = 5,max = 20)
+    private String username;
+    @NotEmpty
     @Size(min = 5, max = 20)
     private String firstName;
     @NotEmpty
@@ -50,6 +53,15 @@ public class UserRegistrationDto {
 
     public UserRegistrationDto setEmail(String email) {
         this.email = email;
+        return this;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public UserRegistrationDto setUsername(String username) {
+        this.username = username;
         return this;
     }
 }
