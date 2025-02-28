@@ -1,6 +1,8 @@
 package com.softuni.project_2025.web;
 
+import com.softuni.project_2025.model.Dto.UserLoginDto;
 import com.softuni.project_2025.model.Dto.UserRegistrationDto;
+import com.softuni.project_2025.model.Entity.UserEntity;
 import com.softuni.project_2025.service.Userservice;
 import jakarta.persistence.PostRemove;
 import jakarta.validation.Valid;
@@ -25,6 +27,10 @@ public class UserController {
     public UserRegistrationDto userRegistrationDto(){
         return new UserRegistrationDto();
     }
+    @ModelAttribute("loginData")
+    public UserLoginDto userLoginDto(){
+        return new UserLoginDto();
+    }
     @GetMapping("/register")
     public String register(){return "register";}
 
@@ -34,7 +40,7 @@ public class UserController {
             BindingResult bindingResult,
             RedirectAttributes redirectAttributes
             ){
-        if(bindingResult.hasErrors()){
+        if(bindingResult.hasErrors()|| !registerData.getPassword().equals(registerData.getConfirmPassword())){
             redirectAttributes.addFlashAttribute("registerData",registerData);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.registerData",bindingResult);
             return"redirect:/register";
@@ -55,8 +61,25 @@ public class UserController {
     }
     @PostMapping("/login")
     public String doLogin(
+            @Valid UserLoginDto loginData,
+            BindingResult bindingResult,
+            RedirectAttributes redirectAttributes
+
     ){
-        return "redirect/:login";
+
+        if(bindingResult.hasErrors()){
+            redirectAttributes.addFlashAttribute("loginData",loginData);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.loginData",bindingResult);
+            return"redirect:/login";
+        }
+
+        boolean success = userservice.login(loginData);
+        if(!success){
+            redirectAttributes.addFlashAttribute("loginError",true);
+
+            return "redirect:/login";
+        }
+        return "redirect/:home";
     }
 
 }

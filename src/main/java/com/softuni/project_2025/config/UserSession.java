@@ -18,6 +18,10 @@ public class UserSession {
 
     }
 
+    public boolean isLoggedIn(){
+        return id>0;
+    }
+
     public long id(){return id;}
 
     public String username(){return username;}

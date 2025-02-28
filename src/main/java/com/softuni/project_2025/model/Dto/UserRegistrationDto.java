@@ -9,34 +9,26 @@ public class UserRegistrationDto {
     @Size(min = 5,max = 20)
     private String username;
     @NotEmpty
-    @Size(min = 5, max = 20)
-    private String firstName;
-    @NotEmpty
-    @Size(min = 5, max = 20)
-    private String lastName;
-    @NotEmpty
     private String password;
+    @NotEmpty
+    private String confirmPassword;
     @NotEmpty
     @Email
     private String email;
 
-    public String getFirstName() {
-        return firstName;
+    public UserRegistrationDto(){
+
+    }
+    public String getConfirmPassword() {
+        return confirmPassword;
     }
 
-    public UserRegistrationDto setFirstName(String firstName) {
-        this.firstName = firstName;
+
+    public UserRegistrationDto setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
         return this;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public UserRegistrationDto setLastName(String lastName) {
-        this.lastName = lastName;
-        return this;
-    }
 
     public String getPassword() {
         return password;
