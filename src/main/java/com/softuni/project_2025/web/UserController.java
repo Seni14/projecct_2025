@@ -79,7 +79,7 @@ public class UserController {
 
             return "redirect:/login";
         }
-        return "redirect/:home";
+        return "redirect:/home";
     }
 
 }

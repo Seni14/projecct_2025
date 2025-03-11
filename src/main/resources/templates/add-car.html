@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add Car</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
+
+  <style>
+    /* Background styling */
+    body {
+      background: url('https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg') no-repeat center center/cover;
+      background-size: cover;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0;
+      padding-top: 0px; /* Push content below navbar */
+    }
+
+    /* Navbar styling */
+    nav {
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: white;
+      z-index: 1000;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Centering navbar content */
+    .navbar .container {
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Card styling */
+    .card {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 400px;
+      width: 90%;
+      margin-top: 20px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Ensure form elements align properly */
+    .form-group {
+      width: 100%;
+    }
+
+    .form-control {
+      width: 100%;
+    }
+
+    /* Submit button styling */
+    .btn-submit {
+      width: 100%;
+      background-color: #007bff;
+      color: white;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      transition: background 0.3s;
+    }
+
+    .btn-submit:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark" th:replace="~{fragments/commons::nav}"></nav>
+
+<!-- Car Form -->
+<div class="card shadow">
+  <h2 class="text-center mb-4">Add a Car</h2>
+  <form th:action="@{/add-car}" th:method="POST" th:object="${carData}">
+
+    <!-- Manufacturer -->
+    <div class="form-group">
+      <label for="manufacturer">Manufacturer</label>
+      <input type="text" id="manufacturer" name="manufacturer" class="form-control" th:field="*{manufacturer}" required>
+    </div>
+
+    <!-- Model -->
+    <div class="form-group">
+      <label for="model">Model</label>
+      <input type="text" id="model" name="model" class="form-control" th:field="*{model}" required>
+    </div>
+
+    <!-- Engine Type -->
+    <div class="form-group">
+      <label for="engineType">Engine Type</label>
+      <select id="engineType" name="engineType" class="form-control" th:field="*{engineType}">
+        <option value="DIESEL">Diesel</option>
+        <option value="PETROL">Petrol</option>
+        <option value="ELECTRIC">Electric</option>
+        <option value="HYBRID">Hybrid</option>
+      </select>
+    </div>
+
+    <!-- Horsepower -->
+    <div class="form-group">
+      <label for="horsepower">Horsepower</label>
+      <input type="number" id="horsepower" name="horsepower" class="form-control" th:field="*{horsePower}" required>
+    </div>
+
+    <!-- Kilometers -->
+    <div class="form-group">
+      <label for="kilometers">Kilometers</label>
+      <input type="number" id="kilometers" name="kilometers" class="form-control" th:field="*{kilometers}" required>
+    </div>
+
+    <!-- Price -->
+    <div class="form-group">
+      <label for="price">Price (€)</label>
+      <input type="number" step="0.01" id="price" name="price" class="form-control" th:field="*{price}" required>
+    </div>
+
+    <!-- Year -->
+    <div class="form-group">
+      <label for="year">Year</label>
+      <input type="date" id="year" name="year" class="form-control" th:field="*{year}" required>
+    </div>
+
+    <!-- Car Image URL -->
+    <div class="form-group">
+      <label for="imageUrl">Car Image URL</label>
+      <input type="url" id="imageUrl" name="imageUrl" class="form-control" th:field="*{image}" placeholder="Paste image link here" required>
+    </div>
+
+    <!-- Listing Type -->
+    <div class="form-group mt-3">
+      <label>Listing Type</label>
+      <div class="form-check">
+        <input type="checkbox" id="forSale" name="forSale" class="form-check-input" th:field="*{forSale}">
+        <label class="form-check-label" for="forSale">For Sale</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" id="forRent" name="forRent" class="form-check-input" th:field="*{forRent}">
+        <label class="form-check-label" for="forRent">For Rent</label>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn-submit mt-3">Add Car</button>
+  </form>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

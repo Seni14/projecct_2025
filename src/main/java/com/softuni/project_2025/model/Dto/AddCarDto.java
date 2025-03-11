@@ -1,43 +1,47 @@
-package com.softuni.project_2025.model.Entity;
+package com.softuni.project_2025.model.Dto;
 
 import com.softuni.project_2025.model.Enums.EngineType;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.Positive;
+import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "cars")
-public class CarEntity extends BaseEntity{
+public class AddCarDto {
+    @Min(50)
+    @Max(1000)
     private int horsePower;
-
-    @Column(nullable = false)
+    @NotNull
     private String model;
-    @Column(nullable = false)
+    @NotNull
     private String manufacturer;
 
     private LocalDate year;
-    @Enumerated(EnumType.STRING)
+    @NotNull
     private EngineType engineType;
-    @Positive
+    @NotNull
     private BigDecimal price;
-    @Positive
+    @NotNull
     private int kilometers;
-    @Column(name = "for_rent")
+
     private boolean forRent;
-    @Column(name = "for_sale")
+
     private boolean forSale;
 
-    private boolean approved;
-    @ManyToOne
-    private UserEntity owner;
+    private String image;
+
+    public AddCarDto(){
+
+    }
 
     public int getHorsePower() {
         return horsePower;
     }
 
-    public CarEntity setHorsePower(int horsePower) {
+    public AddCarDto setHorsePower(int horsePower) {
         this.horsePower = horsePower;
         return this;
     }
@@ -46,7 +50,7 @@ public class CarEntity extends BaseEntity{
         return model;
     }
 
-    public CarEntity setModel(String model) {
+    public AddCarDto setModel(String model) {
         this.model = model;
         return this;
     }
@@ -55,7 +59,7 @@ public class CarEntity extends BaseEntity{
         return manufacturer;
     }
 
-    public CarEntity setManufacturer(String manufacturer) {
+    public AddCarDto setManufacturer(String manufacturer) {
         this.manufacturer = manufacturer;
         return this;
     }
@@ -64,7 +68,7 @@ public class CarEntity extends BaseEntity{
         return year;
     }
 
-    public CarEntity setYear(LocalDate year) {
+    public AddCarDto setYear(LocalDate year) {
         this.year = year;
         return this;
     }
@@ -73,7 +77,7 @@ public class CarEntity extends BaseEntity{
         return engineType;
     }
 
-    public CarEntity setEngineType(EngineType engineType) {
+    public AddCarDto setEngineType(EngineType engineType) {
         this.engineType = engineType;
         return this;
     }
@@ -82,7 +86,7 @@ public class CarEntity extends BaseEntity{
         return price;
     }
 
-    public CarEntity setPrice(BigDecimal price) {
+    public AddCarDto setPrice(BigDecimal price) {
         this.price = price;
         return this;
     }
@@ -91,7 +95,7 @@ public class CarEntity extends BaseEntity{
         return kilometers;
     }
 
-    public CarEntity setKilometers(int kilometers) {
+    public AddCarDto setKilometers(int kilometers) {
         this.kilometers = kilometers;
         return this;
     }
@@ -100,36 +104,26 @@ public class CarEntity extends BaseEntity{
         return forRent;
     }
 
-    public CarEntity setForRent(boolean forRent) {
+    public AddCarDto setForRent(boolean forRent) {
         this.forRent = forRent;
         return this;
     }
-
-    public boolean isApproved() {
-        return approved;
-    }
-
-    public CarEntity setApproved(boolean approved) {
-        this.approved = approved;
-        return this;
-    }
-
-    public UserEntity getOwner() {
-        return owner;
-    }
-
-    public CarEntity setOwner(UserEntity owner) {
-        this.owner = owner;
-        return this;
-    }
-
 
     public boolean isForSale() {
         return forSale;
     }
 
-    public CarEntity setForSale(boolean forSale) {
+    public AddCarDto setForSale(boolean forSale) {
         this.forSale = forSale;
+        return this;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public AddCarDto setImage(String image) {
+        this.image = image;
         return this;
     }
 }
